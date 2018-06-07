@@ -1,0 +1,6 @@
+.idea
+.vscode
+.DS_Store
+**/*.out
+java/Test.java
+python/test.py
