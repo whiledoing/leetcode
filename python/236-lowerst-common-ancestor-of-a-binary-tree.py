@@ -44,74 +44,39 @@ Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of 
 """
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-# class Solution(object):
-    # def lowestCommonAncestor(self, root, p, q):
-    #     """
-    #     :type root: TreeNode
-    #     :type p: TreeNode
-    #     :type q: TreeNode
-    #     :rtype: TreeNode
-    #     """
-    #     if root in (None, p, q): return root
-    #     left, right = (self.lowestCommonAncestor(kid, p, q) for kid in (root.left, root.right))
-    #     return root if left and right else left or right
-
-    # def lowestCommonAncestor_iterative(self, root, p, q):
-    #     stack = [root]
-    #     parent = {root: None}
-    #     while p not in parent or q not in parent:
-    #         node = stack.pop()
-    #         if node.left:
-    #             parent[node.left] = node
-    #             stack.append(node.left)
-    #         if node.right:
-    #             parent[node.right] = node
-    #             stack.append(node.right)
-    #     ancestors = set()
-    #     while p:
-    #         ancestors.add(p)
-    #         p = parent[p]
-    #     while q not in ancestors:
-    #         q = parent[q]
-    #     return q
-
-class Solution:
-    def orderOfLargestPlusSign(self, N, mines):
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
         """
-        :type N: int
-        :type mines: List[List[int]]
-        :rtype: int
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
         """
-        n = len(N)
-        dp_1 = [[0]*n for _ in range(n)]
-        dp_2 = [[0]*n for _ in range(n)]
-        res = 0
+        if root in (None, p, q): return root
+        left, right = (self.lowestCommonAncestor(kid, p, q) for kid in (root.left, root.right))
+        return root if left and right else left or right
 
-        mines_m = {(x, y):True for x, y in mines}
-        for i in range(n):
-            for j in range(n):
-                if (i,j) in mines_m:
-                    dp_1[i][j] = 0
-                elif j == 0:
-                    dp_1[i][j] = 1
-                else:
-                    dp_1[i][j] = min(dp_1[i][j-1], dp_1[i-1][j])+1
-
-        for i in range(n-1, -1, -1):
-            for j in range(n-1, -1, -1):
-                if (i,j) in mines_m:
-                    dp_2[i][j] = 0
-                elif j == n-1:
-                    dp_2[i][j] = 1
-                else:
-                    dp_2[i][j] = min(dp_2[i][j+1], dp_2[i+1][j])+1
-
-        for i in range(n):
-            for j in range(n):
-                res = max(res, min(dp_1[i][j], dp_2[i][j]))
+    def lowestCommonAncestor_iterative(self, root, p, q):
+        stack = [root]
+        parent = {root: None}
+        while p not in parent or q not in parent:
+            node = stack.pop()
+            if node.left:
+                parent[node.left] = node
+                stack.append(node.left)
+            if node.right:
+                parent[node.right] = node
+                stack.append(node.right)
+        ancestors = set()
+        while p:
+            ancestors.add(p)
+            p = parent[p]
+        while q not in ancestors:
+            q = parent[q]
+        return q
