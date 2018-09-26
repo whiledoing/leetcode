@@ -15,7 +15,7 @@ Output: 3
 Explanation: The three ranges are : [0,0], [2,2], [0,2] and their respective sums are: -2, -1, 2.
 
 - 第一步是将区间和变成accumulate的两数相减
-- 如果去掉范围，只是考虑单边条件，比如只考虑大于upper，是不是就变成了reverse pair类似的问题，只是这里我们是对accumulatem的数据进行分析。
+- 如果去掉范围，只是考虑单边条件，比如只考虑大于upper，是不是就变成了reverse pair类似的问题，只是这里我们是对accumulate的数据进行分析。
 - 从左到右搜索时，可以用balanced BST记录已经扫描过的accumulate数值。
 - 当然这种reverse pair问题都可以用merge sort方法，因为merge sort在搜索符合特定差值问题时，可以**线性搜索**（因为有序）
 

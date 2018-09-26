@@ -71,3 +71,4 @@ class Solution:
             # 120ms
             # bisect.insort_left(buff, nums[i])
         return res
+
