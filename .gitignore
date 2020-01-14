@@ -4,8 +4,14 @@
 **/*.out
 java/Test.java
 python/test.py
+python/practice.py
+python/test_practice.py
+
+# ignore all files
 vscode-leetcode/**/*
+# unignore directory
 !vscode-leetcode/**/*/
+# unignore specific files
 !vscode-leetcode/cpp/**/*.cpp
 !vscode-leetcode/python3/**/*.py
 !vscode-leetcode/java/**/*.java
