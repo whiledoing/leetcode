@@ -52,6 +52,19 @@ class Solution:
         from functools import reduce
         return (sum(nums) / 2.) in reduce(lambda cur, x: cur | {v + x for v in cur}, nums, {0})
 
+    def canPartition_use_backtracking(self, nums):
+        sum_v = sum(nums)
+        if sum_v & 1: return False
+
+        def dfs(s, t):
+            if t == 0: return True
+            for v in nums[s:]:
+                if dfs(s+1, t-v):
+                    return True
+            return False
+
+        return dfs(0, sum_v >> 1)
+
     def canPartition_using_dp(self, nums):
         """
         :type nums: List[int]
@@ -75,3 +88,7 @@ class Solution:
             dp[0], dp[1] = dp[1], dp[0]
 
         return dp[0][sum_v]
+
+if __name__ == "__main__":
+    print(Solution().canPartition_use_backtracking([1, 5, 11, 5]))
+    print(Solution().canPartition_use_backtracking([1, 2, 3, 5]))
