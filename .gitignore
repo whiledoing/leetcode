@@ -4,3 +4,9 @@
 **/*.out
 java/Test.java
 python/test.py
+vscode-leetcode/**/*
+!vscode-leetcode/**/*/
+!vscode-leetcode/cpp/**/*.cpp
+!vscode-leetcode/python3/**/*.py
+!vscode-leetcode/java/**/*.java
+!vscode-leetcode/go/**/*.go
