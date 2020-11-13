@@ -65,7 +65,7 @@ class Solution:
                 return
 
             for i in range(s, len(num)):
-                if i > 0 and (num[i] == num[i-1]: continue
+                if i > 0 and (num[i] == num[i-1]): continue
                 dfs(i+1, buffer + num[i])
 
         dfs(0, '')

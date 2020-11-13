@@ -30,23 +30,22 @@
  * 输出: [-1,-1]
  *
  */
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
 class Solution {
-public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-        auto left = lower_bound(nums.begin(), nums.end(), target);
-        if (left == nums.end() || *left != target) {
-            return {-1, -1};
-        }
-
-        auto right = upper_bound(nums.begin(), nums.end(), target);
-        return {(int)(left-nums.begin()), (int)(right-nums.begin()-1)};
+ public:
+  vector<int> searchRange(vector<int>& nums, int target) {
+    auto left = lower_bound(nums.begin(), nums.end(), target);
+    if (left == nums.end() || *left != target) {
+      return {-1, -1};
     }
+
+    auto right = upper_bound(left, nums.end(), target);
+    return {(int)(left - nums.begin()), (int)(right - nums.begin() - 1)};
+  }
 };
 // @lc code=end
-

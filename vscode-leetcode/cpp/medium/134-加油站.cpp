@@ -64,10 +64,22 @@
 
 // @lc code=start
 class Solution {
-public:
-    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-
+ public:
+  int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+    int sum_v = 0, cur_v = 0, start_index = -1;
+    for (int i = 0; i < gas.size(); ++i) {
+      int left = gas[i] - cost[i];
+      sum_v += left;
+      cur_v += left;
+      if (cur_v >= 0) {
+        if (start_index == -1) start_index = i;
+      } else {
+        start_index = -1;
+        cur_v = 0;
+      }
     }
+
+    return sum_v < 0 ? -1 : start_index;
+  }
 };
 // @lc code=end
-
